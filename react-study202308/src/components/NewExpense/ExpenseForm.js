@@ -1,48 +1,54 @@
-import React, { useState } from 'react';
-import './ExpenseForm.css';
+import React, { useState } from 'react'
+import './ExpenseForm.css'
 
-const ExpenseForm = () => {
-
+const ExpenseForm = ({onSaveExpense}) => {
   const [userInput, setUserInput] = useState({
     title: '',
     price: '',
     date: '',
-  });
+  })
 
   const titleChangeHandler = (e) => {
-    setUserInput({
-      ...userInput,
-      title: e.target.value,
-    });
-  };
+
+    setUserInput((prevUserInput) => ({
+        ...prevUserInput,
+        title: e.target.vlaue
+    }))
+    // setUserInput({
+    //   ...userInput,
+    //   title: e.target.value,
+    // });
+  }
 
   const priceChangeHandler = (e) => {
     setUserInput({
       ...userInput,
       price: e.target.value,
-    });
-  };
+    })
+  }
 
   const dateChangeHandler = (e) => {
     setUserInput({
       ...userInput,
       date: e.target.value,
-    });
-  };
+    })
+  }
 
   const formSubmitHandler = (e) => {
-    e.preventDefault(); // submit 차단
+    e.preventDefault() // submit 차단
     console.log('submit 버튼을 누름!');
 
-    console.log(userInput);
+    onSaveExpense(userInput);
+
+    // console.log(userInput);
 
     // 입력창 리셋
     setUserInput({
       title: '',
       price: '',
-      date: ''
-    });
-  };
+      date: '',
+    })
+  }
 
   return (
     <form onSubmit={formSubmitHandler}>
@@ -80,7 +86,7 @@ const ExpenseForm = () => {
         <button type="submit">Add Expense</button>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default ExpenseForm;
+export default ExpenseForm
