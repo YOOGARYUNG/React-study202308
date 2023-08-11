@@ -1,6 +1,11 @@
 import React from 'react';
 // css 로딩
 import './ExpenseItem.css';
+import ExpenseDate from './ExpenseDate';
+
+
+
+
 
 const ExpenseItem = ({title, price: prosPrice, date}) => {
 // const ExpenseItem = (props) => {
@@ -29,6 +34,7 @@ const ExpenseItem = ({title, price: prosPrice, date}) => {
 
   return (
     <div className="expense-item">
+      <ExpenseDate date={date} />
       <div>{makeFormattedDate()}</div>
       <div className="expense-item__description">
         <h2>{title}</h2>
