@@ -2,11 +2,7 @@ import React, { useState } from 'react';
 // css 로딩
 import './ExpenseItem.css';
 import ExpenseDate from './ExpenseDate';
-import Card from './UI/Card';
-
-
-
-
+import Card from '../UI/Card';
 
 const ExpenseItem = ({title, price: prosPrice, date}) => {
 
@@ -30,7 +26,7 @@ const ExpenseItem = ({title, price: prosPrice, date}) => {
         const month = date.getMonth();
         const day = date.getDate();
 
-        // return `${year}년 ${make2digit(month)}월 ${make2digit(day)}일`
+        return `${year}년 ${make2digit(month)}월 ${make2digit(day)}일`
     };
 
     // 숫자를 원화표기법으로 바꾸기
@@ -56,7 +52,6 @@ const ExpenseItem = ({title, price: prosPrice, date}) => {
   return (
       <Card className="expense-item">
         <ExpenseDate date={date} />
-        <div>{makeFormattedDate()}</div>
         <div className="expense-item__description">
           <h2>{itemTitle}</h2>
           <div className="expense-item__price">{formattedPrice}원</div>
