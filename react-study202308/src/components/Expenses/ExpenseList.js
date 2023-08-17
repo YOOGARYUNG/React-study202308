@@ -27,17 +27,14 @@ const ExpenseList = ({ items }) => {
   //     />
   //   ));
   // };
-
   const filteredItems = items.filter(
     (item) => item.date.getFullYear().toString() === filteredYear
   );
 
-  // 조건부 렌더링을 위한 변수
+  //조건부 랜더링을 위한 변수
   let expenseContent = <p>아직 등록된 지출이 없습니다</p>;
-
   if (filteredItems.length > 0) {
-    expenseContent = filteredItems
-    .map(({ id, title, price, date }) => (
+    expenseContent = filteredItems.map(({ id, title, price, date }) => (
       <ExpenseItem
         key={id}
         title={title}
@@ -53,8 +50,7 @@ const ExpenseList = ({ items }) => {
         selected={filteredYear}
         onChangeFilter={filterChangeHandler}
       />
-      <ExpensesChart />
-      {expenseContent}
+      <ExpensesChart expenses={filteredItems} />;{expenseContent}
     </Card>
   );
 };
