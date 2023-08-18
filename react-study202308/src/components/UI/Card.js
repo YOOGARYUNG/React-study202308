@@ -3,7 +3,7 @@ import styles from './Card.module.css';
 
 const Card = ({children, className}) => {
   return (
-    <div className={`${styles.Card} ${className}`}>
+    <div className={`${styles.card} ${className}`}>
         {children}
     </div>
   )
