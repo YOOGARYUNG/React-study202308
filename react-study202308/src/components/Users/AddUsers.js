@@ -58,7 +58,7 @@ const AddUsers = ({ onAddUser }) => {
   return (
     // React.Fragment
     <> 
-      {error && <ErrorModal title={error.title} message={error.message} />}
+      {error && <ErrorModal title={error.title} message={error.message} onConfrim={error.onConfrim}/>}
       <Card className={styles.input}>
         <form onSubmit={userSubmitHandler}>
           <label htmlFor="username">이름</label>
