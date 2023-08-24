@@ -1,7 +1,21 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styles from './MealItem.module.scss';
+import MealItemForm from './MealItemForm';
+import CartContext from '../../../../store/cart-context';
 
 const MealItem = ({id, price, description, name}) => {
+
+  const {addItem} = useContext(CartContext);
+
+  const addToCartHandler = (amount) => {
+    const item = {
+      id: id,
+      name: name,
+      price, price,
+      amount: +amount
+    };
+    addItem(item);
+  }
 
   const { meal, description: desc, price: priceStyle } = styles;
 
@@ -15,7 +29,7 @@ const MealItem = ({id, price, description, name}) => {
         <div className={priceStyle}>{formatPrice}원</div>
       </div>
       <div>
-        
+        <MealItemForm id={id} onAddToCart={addToCartHandler} />
       </div>
     </li>
   );
