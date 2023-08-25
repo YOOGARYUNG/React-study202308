@@ -12,9 +12,23 @@ const cartReducer = (state, action) => {
 
   if (action.type === 'ADD') {
 
-    const updatedItems = [...state.items, action.item];
+    // 신규아이템
+    const newCartItem = action.item;
+    // 기존 장바구니에 등록된 메뉴인지 아닌지에 따라 다른 처리 해야함
+    const index = state.items.findIndex(item => item.id === newCartItem.id);
+    // 기존아이템
+    const existingItems = [...state.items] // 기존배열 복사
+    const prevCartItem = existingItems[index];
+    const updatedPrice = state.totalPrice + (newCartItem.price * newCartItem.amount);
 
-    const updatedPrice = state.totalPrice + (action.item.price * action.item.amount);
+    let updatedItems;
+
+    if (index === -1) { // 신규아이템
+      updatedItems = [...state.items, newCartItem];
+    } else { // 기존 아이템 -> 수량만 1을 올려주면 된다.
+      prevCartItem.amount++; // 복사된 아이템의 수량을 늘려줌
+      updatedItems = [...existingItems] // 새롭게 복사배열을 갱신
+    }
 
     return {
       items: updatedItems,
